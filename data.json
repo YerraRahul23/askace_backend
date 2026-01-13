@@ -1,0 +1,30 @@
+{
+  "fees": {
+    "cse": "CSE yearly fee is approximately ₹95,000",
+    "aiml": "CSE (AI & ML) yearly fee is approximately ₹1,00,000",
+    "ds": "CSE (Data Science) yearly fee is approximately ₹1,00,000",
+    "ece": "ECE yearly fee is approximately ₹90,000",
+    "eee": "EEE yearly fee is approximately ₹85,000",
+    "mech": "Mechanical Engineering yearly fee is approximately ₹80,000",
+    "civil": "Civil Engineering yearly fee is approximately ₹75,000"
+  },
+  "hostel": "Hostel facilities are available for both boys and girls with hygienic food, Wi-Fi, and 24/7 security.",
+  "bus": "College buses operate on multiple routes covering Hyderabad and nearby areas. Bus fee depends on distance.",
+  "placements": {
+    "programs": ["Arjuna", "Vihan", "Kalan", "Butterfly"],
+    "highest_package": "Highest package offered is around ₹12 LPA",
+    "partners": ["TCS", "Infosys", "Wipro", "Cognizant", "Accenture"]
+  },
+  "clubs": [
+    "SPANZORS (CE)",
+    "MECAZAYA (ME)",
+    "PHASOR (EEE)",
+    "TECHTRONICS (ECE)",
+    "ZERO BUG (IT)",
+    "CYBERNOTICS (CSE)",
+    "McArti (CSE AI & ML)",
+    "CODE (CSE DS)"
+  ],
+  "sports": "ACE Engineering College encourages sports with facilities for cricket, volleyball, badminton, and indoor games.",
+  "fest": "ACE conducts technical fests, cultural events, and annual celebrations every year."
+}
