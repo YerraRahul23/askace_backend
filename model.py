@@ -1,45 +1,67 @@
 import json
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
 with open("data.json", "r", encoding="utf-8") as f:
     KB = json.load(f)
 
-def get_answer(question: str) -> str:
-    q = question.lower()
+QUESTIONS = []
+ANSWERS = []
 
-    # FEES
-    if "fee" in q or "fees" in q:
-        for dept in KB["fees"]:
-            if dept in q:
-                return KB["fees"][dept]
-        return "Fees vary by department. Please specify CSE, AIML, ECE, etc."
+def flatten_data():
+    for key, value in KB.items():
+        if key == "placements":
+            phrases = [
+                "placements",
+                "placement details",
+                "highest package",
+                "highest salary",
+                "top package",
+                "recruiters",
+                "companies visiting campus"
+            ]
+            for p in phrases:
+                QUESTIONS.append(p)
+                ANSWERS.append(value)
 
-    # PLACEMENTS
-    if "placement" in q or "placements" in q:
-        p = KB["placements"]
-        return (
-            f"Programs: {', '.join(p['programs'])}\n"
-            f"{p['highest_package']}\n"
-            f"Recruiters: {', '.join(p['partners'])}"
-        )
+        elif key == "fees":
+            phrases = [
+                "fees",
+                "annual fee",
+                "tuition fee",
+                "fee of all branches",
+                "cse fee",
+                "aiml fee",
+                "ds fee",
+                "ece fee",
+                "eee fee",
+                "mech fee",
+                "civil fee"
+            ]
+            for p in phrases:
+                QUESTIONS.append(p)
+                ANSWERS.append(value)
 
-    # CLUBS
-    if "club" in q or "clubs" in q:
-        return "Technical Clubs:\n" + "\n".join(KB["clubs"])
+        elif key == "clubs":
+            QUESTIONS.append("clubs")
+            ANSWERS.append(value)
 
-    # HOSTEL
-    if "hostel" in q:
-        return KB["hostel"]
+        else:
+            QUESTIONS.append(key)
+            ANSWERS.append(value)
 
-    # BUS
-    if "bus" in q or "transport" in q:
-        return KB["bus"]
+flatten_data()
 
-    # SPORTS
-    if "sport" in q or "games" in q:
-        return KB["sports"]
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(QUESTIONS)
 
-    # FEST
-    if "fest" in q or "event" in q:
-        return KB["fest"]
+def get_answer(question: str):
+    q_vec = vectorizer.transform([question])
+    scores = cosine_similarity(q_vec, X)
+    best = scores.argmax()
+    confidence = scores[0][best]
 
-    return "Sorry, I couldn’t understand your question 🤖"
+    if confidence < 0.15:
+        return None
+
+    return QUESTIONS[best], ANSWERS[best]
