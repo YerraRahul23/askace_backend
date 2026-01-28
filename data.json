@@ -1,10 +1,11 @@
 {
   "fees": {
-    "cse": "CSE yearly fee is approximately ₹95,000",
+    "cse": "CSE yearly fee is approximately 1,00,000",
+    "iot": "CSE (IOT) yearly fee is approximately 1,00,000",
     "aiml": "CSE (AI & ML) yearly fee is approximately ₹1,00,000",
     "ds": "CSE (Data Science) yearly fee is approximately ₹1,00,000",
     "ece": "ECE yearly fee is approximately ₹90,000",
-    "eee": "EEE yearly fee is approximately ₹85,000",
+    "eee": "EEE yearly fee is approximately ₹95,000",
     "mech": "Mechanical Engineering yearly fee is approximately ₹80,000",
     "civil": "Civil Engineering yearly fee is approximately ₹75,000"
   },
